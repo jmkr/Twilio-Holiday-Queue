@@ -17,9 +17,9 @@ app.config.from_pyfile('local_settings.py')
 @app.route('/caller', methods=['GET', 'POST'])
 def caller():
     response = twiml.Response()
-    response.say("Thank you for calling this demonstration of Twilio Queue " \
+    response.say("Thank you for calling Meeker tech support. " \
             "Please hold.")
-    response.enqueue("Queue Demo", waitUrl='/wait')
+    response.enqueue("Tech Support Queue", waitUrl='/wait')
     return str(response)
 
 
@@ -29,10 +29,11 @@ def caller():
 def wait():
     response = twiml.Response()
     response.say("You are number %s in line." % request.form['QueuePosition'])
-    response.play("http://com.twilio.music.guitars.s3.amazonaws.com/" \
+    '''response.play("http://com.twilio.music.guitars.s3.amazonaws.com/" \
             "Pitx_-_A_Thought.mp3")
     response.play("http://com.twilio.music.guitars.s3.amazonaws.com/" \
-            "Pitx_-_Long_Winter.mp3")
+            "Pitx_-_Long_Winter.mp3")'''
+    response.play("https://dl.dropbox.com/u/19475876/TheBeatlesHelp.mp3")
     response.redirect('/wait')
     return str(response)
 
@@ -42,7 +43,7 @@ def wait():
 def agent():
     response = twiml.Response()
     with response.dial() as dial:
-        dial.queue("Queue Demo")
+        dial.queue("Tech Support Queue")
     return str(response)
 
 
