@@ -35,8 +35,11 @@ def wait():
             "Pitx_-_Long_Winter.mp3")'''
     response.play("https://dl.dropbox.com/u/19475876/TheBeatlesHelp.mp3")
     response.redirect('/wait')
+    '''
+    TODO: sms notifacation when someone calls
     client = TwilioRestCleint(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN)
     client.sms.message.create(to="+18052177352", from_="+18054914561", body="Hey. Someone is waiting in the queue") 
+    '''
     return str(response)
 
 
